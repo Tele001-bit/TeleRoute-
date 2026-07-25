@@ -13,10 +13,10 @@
         }
 
         body {
-            /* Smooth ash-grey to dark radial gradient inspired by your screenshot */
-            background: radial-gradient(circle at 50% 10%, #3a3f47 0%, #1e2127 50%, #0d0f12 100%);
+            /* Lighter Ash-Grey & Silver Gradient Background */
+            background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 50%, #94a3b8 100%);
             background-attachment: fixed;
-            color: #ffffff;
+            color: #0f172a;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -27,9 +27,14 @@
         .auth-card {
             width: 100%;
             max-width: 400px;
+            background: #0f172a;
+            padding: 32px 28px;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.25);
             display: flex;
             flex-direction: column;
             gap: 22px;
+            color: #ffffff;
         }
 
         .brand-header {
@@ -41,14 +46,14 @@
         .logo-icon {
             width: 44px;
             height: 44px;
-            background: linear-gradient(135deg, #2dd4bf, #059669);
+            background: linear-gradient(135deg, #10b981, #059669);
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             font-size: 20px;
             font-weight: bold;
-            box-shadow: 0 0 20px rgba(45, 212, 191, 0.25);
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
         }
 
         .brand-text h2 {
@@ -59,11 +64,11 @@
 
         .brand-text p {
             font-size: 0.85rem;
-            color: #9ca3af;
+            color: #94a3b8;
         }
 
         .welcome-title h1 {
-            font-size: 1.8rem;
+            font-size: 1.75rem;
             font-weight: 700;
             margin-bottom: 6px;
             letter-spacing: -0.5px;
@@ -71,17 +76,16 @@
 
         .welcome-title p {
             font-size: 0.9rem;
-            color: #9ca3af;
+            color: #94a3b8;
             line-height: 1.4;
         }
 
         .tab-switcher {
             display: flex;
-            background-color: rgba(255, 255, 255, 0.05);
+            background-color: #1e293b;
             padding: 4px;
             border-radius: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
+            border: 1px solid #334155;
         }
 
         .tab-btn {
@@ -89,7 +93,7 @@
             padding: 12px;
             border: none;
             background: transparent;
-            color: #9ca3af;
+            color: #94a3b8;
             font-size: 0.9rem;
             font-weight: 600;
             border-radius: 26px;
@@ -99,7 +103,7 @@
 
         .tab-btn.active {
             background-color: #ffffff;
-            color: #0d0f12;
+            color: #0f172a;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
 
@@ -116,8 +120,8 @@
         .input-group input {
             width: 100%;
             padding: 16px 18px;
-            background-color: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.12);
+            background-color: #1e293b;
+            border: 1px solid #334155;
             border-radius: 16px;
             color: #ffffff;
             font-size: 0.95rem;
@@ -126,12 +130,12 @@
         }
 
         .input-group input::placeholder {
-            color: #6b7280;
+            color: #64748b;
         }
 
         .input-group input:focus {
-            border-color: rgba(255, 255, 255, 0.35);
-            background-color: rgba(255, 255, 255, 0.07);
+            border-color: #10b981;
+            background-color: #1e293b;
         }
 
         .form-options {
@@ -146,16 +150,16 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            color: #9ca3af;
+            color: #94a3b8;
             cursor: pointer;
         }
 
         .remember-me input {
-            accent-color: #ffffff;
+            accent-color: #10b981;
         }
 
         .forgot-link {
-            color: #9ca3af;
+            color: #94a3b8;
             text-decoration: none;
         }
 
@@ -167,7 +171,7 @@
             width: 100%;
             padding: 16px;
             background-color: #ffffff;
-            color: #0d0f12;
+            color: #0f172a;
             border: none;
             border-radius: 30px;
             font-size: 1rem;
@@ -175,7 +179,6 @@
             cursor: pointer;
             margin-top: 6px;
             transition: transform 0.1s ease, opacity 0.2s;
-            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.15);
         }
 
         .submit-btn:active {
@@ -184,11 +187,11 @@
 
         .explore-link {
             text-align: center;
-            margin-top: 6px;
+            margin-top: 4px;
         }
 
         .explore-link a {
-            color: #9ca3af;
+            color: #94a3b8;
             font-size: 0.85rem;
             text-decoration: none;
         }
@@ -301,3 +304,4 @@
     </script>
 </body>
 </html>
+
