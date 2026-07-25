@@ -36,6 +36,32 @@
             pointer-events: none;
         }
 
+        /* Toast Notification Styling */
+        .toast-container {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-100px);
+            background: #ef4444;
+            color: #ffffff;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            box-shadow: 0 10px 25px rgba(239, 68, 68, 0.4);
+            z-index: 1000;
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .toast-container.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
         .auth-card {
             width: 100%;
             max-width: 400px;
@@ -119,10 +145,21 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
 
+        /* Animated Form Container */
         .auth-form {
             display: flex;
             flex-direction: column;
             gap: 14px;
+            transition: opacity 0.25s ease, transform 0.25s ease;
+        }
+
+        .auth-form.animating {
+            opacity: 0;
+            transform: translateY(8px);
+        }
+
+        .input-group {
+            position: relative;
         }
 
         .input-group input {
@@ -147,15 +184,20 @@
             box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
         }
 
-        .error-message {
-            color: #ef4444;
-            font-size: 0.85rem;
-            text-align: center;
-            display: none;
-            background: rgba(239, 68, 68, 0.1);
-            padding: 10px;
-            border-radius: 12px;
-            border: 1px solid rgba(239, 68, 68, 0.3);
+        /* Password Toggle Icon */
+        .password-toggle {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #60a5fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4px;
         }
 
         .form-options {
@@ -217,7 +259,6 @@
             text-decoration: none;
         }
 
-        /* Terms and Privacy Footer Notice */
         .terms-notice {
             text-align: center;
             font-size: 0.78rem;
@@ -231,13 +272,14 @@
             font-weight: 600;
             text-decoration: none;
         }
-
-        .terms-notice a:hover {
-            text-decoration: underline;
-        }
     </style>
 </head>
 <body>
+
+    <!-- Floating Toast Notification -->
+    <div class="toast-container" id="toast">
+        <span id="toast-message">Notification message</span>
+    </div>
 
     <div class="auth-card">
         <div class="brand-header">
@@ -263,9 +305,7 @@
             <button class="tab-btn" id="btn-signup" onclick="switchTab('signup')">Sign Up</button>
         </div>
 
-        <form class="auth-form" onsubmit="handleAuth(event)">
-            <div class="error-message" id="error-box">Incorrect password. Please try again!</div>
-
+        <form class="auth-form" id="auth-form" onsubmit="handleAuth(event)">
             <div class="input-group" id="field-fullname" style="display: none;">
                 <input type="text" id="fullname-input" placeholder="Full name">
             </div>
@@ -278,8 +318,15 @@
                 <input type="tel" placeholder="Phone number (11 digits)" maxlength="11">
             </div>
 
+            <!-- Password Field with Interactive Eye Toggle -->
             <div class="input-group">
-                <input type="password" id="password-input" placeholder="Password" required>
+                <input type="password" id="password-input" placeholder="Password" required style="padding-right: 48px;">
+                <button type="button" class="password-toggle" onclick="togglePasswordVisibility()" title="Toggle password view">
+                    <svg id="eye-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                </button>
             </div>
 
             <div class="form-options" id="login-options">
@@ -296,7 +343,6 @@
             <a href="dashboard.html">Explore without signing in &rarr;</a>
         </div>
 
-        <!-- Cycled Terms Notice -->
         <div class="terms-notice">
             By continuing, you agree to our <a href="#">Terms</a> and <a href="#">Privacy Policy</a>.
         </div>
@@ -304,56 +350,90 @@
 
     <script>
         let currentMode = 'login';
+        let toastTimeout;
 
-        function switchTab(mode) {
-            currentMode = mode;
-            hideError();
-            const btnLogin = document.getElementById('btn-login');
-            const btnSignup = document.getElementById('btn-signup');
-            const title = document.getElementById('title-text');
-            const subtitle = document.getElementById('subtitle-text');
-            const submitBtn = document.getElementById('submit-btn');
+        // Toast Notification Function
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toast-message');
             
-            const fieldFullname = document.getElementById('field-fullname');
-            const fieldPhone = document.getElementById('field-phone');
-            const loginOptions = document.getElementById('login-options');
+            toastMessage.innerText = message;
+            toast.classList.add('show');
 
-            if (mode === 'login') {
-                btnLogin.classList.add('active');
-                btnSignup.classList.remove('active');
-                title.innerText = 'Welcome back';
-                subtitle.innerText = 'Sign in to access your services and dashboard.';
-                submitBtn.innerHTML = 'Sign In &rarr;';
-                
-                fieldFullname.style.display = 'none';
-                fieldPhone.style.display = 'none';
-                loginOptions.style.display = 'flex';
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Toggle Password Visibility (Eye Icon)
+        function togglePasswordVisibility() {
+            const pwdInput = document.getElementById('password-input');
+            const eyeIcon = document.getElementById('eye-icon');
+
+            if (pwdInput.type === 'password') {
+                pwdInput.type = 'text';
+                eyeIcon.innerHTML = `
+                    <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                    <line x1="1" y1="1" x2="23" y2="23"></line>
+                `;
             } else {
-                btnSignup.classList.add('active');
-                btnLogin.classList.remove('active');
-                title.innerText = 'Create your account';
-                subtitle.innerText = 'Join thousands using TeleRoute for global solutions.';
-                submitBtn.innerHTML = 'Create Account &rarr;';
-                
-                fieldFullname.style.display = 'block';
-                fieldPhone.style.display = 'block';
-                loginOptions.style.display = 'none';
+                pwdInput.type = 'password';
+                eyeIcon.innerHTML = `
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                `;
             }
         }
 
-        function showError(msg) {
-            const errBox = document.getElementById('error-box');
-            errBox.innerText = msg;
-            errBox.style.display = 'block';
+        // Animated Tab Switching
+        function switchTab(mode) {
+            if (currentMode === mode) return;
+            currentMode = mode;
+
+            const form = document.getElementById('auth-form');
+            form.classList.add('animating');
+
+            setTimeout(() => {
+                const btnLogin = document.getElementById('btn-login');
+                const btnSignup = document.getElementById('btn-signup');
+                const title = document.getElementById('title-text');
+                const subtitle = document.getElementById('subtitle-text');
+                const submitBtn = document.getElementById('submit-btn');
+                
+                const fieldFullname = document.getElementById('field-fullname');
+                const fieldPhone = document.getElementById('field-phone');
+                const loginOptions = document.getElementById('login-options');
+
+                if (mode === 'login') {
+                    btnLogin.classList.add('active');
+                    btnSignup.classList.remove('active');
+                    title.innerText = 'Welcome back';
+                    subtitle.innerText = 'Sign in to access your services and dashboard.';
+                    submitBtn.innerHTML = 'Sign In &rarr;';
+                    
+                    fieldFullname.style.display = 'none';
+                    fieldPhone.style.display = 'none';
+                    loginOptions.style.display = 'flex';
+                } else {
+                    btnSignup.classList.add('active');
+                    btnLogin.classList.remove('active');
+                    title.innerText = 'Create your account';
+                    subtitle.innerText = 'Join thousands using TeleRoute for global solutions.';
+                    submitBtn.innerHTML = 'Create Account &rarr;';
+                    
+                    fieldFullname.style.display = 'block';
+                    fieldPhone.style.display = 'block';
+                    loginOptions.style.display = 'none';
+                }
+
+                form.classList.remove('animating');
+            }, 200);
         }
 
-        function hideError() {
-            document.getElementById('error-box').style.display = 'none';
-        }
-
+        // Authentication & Validation Handler
         function handleAuth(e) {
             e.preventDefault();
-            hideError();
 
             const fullName = document.getElementById('fullname-input').value.trim();
             const email = document.getElementById('email-input').value.trim().toLowerCase();
@@ -363,7 +443,7 @@
 
             if (currentMode === 'signup') {
                 if (!password || password.length < 4) {
-                    showError("Password must be at least 4 characters long!");
+                    showToast("Password must be at least 4 characters!");
                     return;
                 }
 
@@ -377,21 +457,27 @@
                 localStorage.setItem('teleRouteUsers', JSON.stringify(users));
                 localStorage.setItem('teleRouteUser', nameToSave);
 
-                window.location.href = 'dashboard.html';
+                showToast("Account created successfully!");
+                setTimeout(() => {
+                    window.location.href = 'dashboard.html';
+                }, 800);
 
             } else if (currentMode === 'login') {
                 if (!users[email]) {
-                    showError("No account found with this email. Please Sign Up first!");
+                    showToast("Account not found. Please Sign Up first!");
                     return;
                 }
 
                 if (users[email].password !== password) {
-                    showError("Incorrect password. Please try again!");
+                    showToast("Incorrect password. Please try again!");
                     return;
                 }
 
                 localStorage.setItem('teleRouteUser', users[email].name);
-                window.location.href = 'dashboard.html';
+                showToast("Signed in successfully!");
+                setTimeout(() => {
+                    window.location.href = 'dashboard.html';
+                }, 800);
             }
         }
     </script>
