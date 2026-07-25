@@ -147,6 +147,17 @@
             box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
         }
 
+        .error-message {
+            color: #ef4444;
+            font-size: 0.85rem;
+            text-align: center;
+            display: none;
+            background: rgba(239, 68, 68, 0.1);
+            padding: 10px;
+            border-radius: 12px;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
         .form-options {
             display: flex;
             justify-content: space-between;
@@ -234,6 +245,8 @@
         </div>
 
         <form class="auth-form" onsubmit="handleAuth(event)">
+            <div class="error-message" id="error-box">Incorrect password. Please try again!</div>
+
             <div class="input-group" id="field-fullname" style="display: none;">
                 <input type="text" id="fullname-input" placeholder="Full name">
             </div>
@@ -270,6 +283,7 @@
 
         function switchTab(mode) {
             currentMode = mode;
+            hideError();
             const btnLogin = document.getElementById('btn-login');
             const btnSignup = document.getElementById('btn-signup');
             const title = document.getElementById('title-text');
@@ -303,25 +317,65 @@
             }
         }
 
+        function showError(msg) {
+            const errBox = document.getElementById('error-box');
+            errBox.innerText = msg;
+            errBox.style.display = 'block';
+        }
+
+        function hideError() {
+            document.getElementById('error-box').style.display = 'none';
+        }
+
         function handleAuth(e) {
             e.preventDefault();
+            hideError();
+
             const fullName = document.getElementById('fullname-input').value.trim();
-            const email = document.getElementById('email-input').value.trim();
+            const email = document.getElementById('email-input').value.trim().toLowerCase();
+            const password = document.getElementById('password-input').value;
 
-            let displayName = "USER";
-            if (currentMode === 'signup' && fullName !== "") {
-                displayName = fullName;
-            } else if (email !== "") {
-                displayName = email.split('@')[0];
+            // Retrieve registered users database from localStorage
+            let users = JSON.parse(localStorage.getItem('teleRouteUsers')) || {};
+
+            if (currentMode === 'signup') {
+                if (!password || password.length < 4) {
+                    showError("Password must be at least 4 characters long!");
+                    return;
+                }
+
+                const nameToSave = fullName !== "" ? fullName : email.split('@')[0];
+                
+                // Save/Register User
+                users[email] = {
+                    name: nameToSave,
+                    password: password
+                };
+
+                localStorage.setItem('teleRouteUsers', JSON.stringify(users));
+                localStorage.setItem('teleRouteUser', nameToSave);
+
+                // Successfully signed up -> redirect
+                window.location.href = 'dashboard.html';
+
+            } else if (currentMode === 'login') {
+                // Check if user exists
+                if (!users[email]) {
+                    showError("No account found with this email. Please Sign Up first!");
+                    return;
+                }
+
+                // Verify Password
+                if (users[email].password !== password) {
+                    showError("Incorrect password. Please try again!");
+                    return;
+                }
+
+                // Password matches! Log in -> redirect
+                localStorage.setItem('teleRouteUser', users[email].name);
+                window.location.href = 'dashboard.html';
             }
-
-            // Save user name to browser storage
-            localStorage.setItem('teleRouteUser', displayName);
-
-            // Redirect to dashboard.html
-            window.location.href = 'dashboard.html';
         }
     </script>
 </body>
 </html>
-
