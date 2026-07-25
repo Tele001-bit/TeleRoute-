@@ -46,7 +46,7 @@
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(30, 58, 138, 0.3);
             display: flex;
             flex-direction: column;
-            gap: 22px;
+            gap: 20px;
             position: relative;
             z-index: 1;
         }
@@ -208,13 +208,32 @@
 
         .explore-link {
             text-align: center;
-            margin-top: 4px;
+            margin-top: 2px;
         }
 
         .explore-link a {
             color: #93c5fd;
             font-size: 0.85rem;
             text-decoration: none;
+        }
+
+        /* Terms and Privacy Footer Notice */
+        .terms-notice {
+            text-align: center;
+            font-size: 0.78rem;
+            color: #64748b;
+            margin-top: 4px;
+            line-height: 1.4;
+        }
+
+        .terms-notice a {
+            color: #ffffff;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .terms-notice a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -276,6 +295,11 @@
         <div class="explore-link">
             <a href="dashboard.html">Explore without signing in &rarr;</a>
         </div>
+
+        <!-- Cycled Terms Notice -->
+        <div class="terms-notice">
+            By continuing, you agree to our <a href="#">Terms</a> and <a href="#">Privacy Policy</a>.
+        </div>
     </div>
 
     <script>
@@ -335,7 +359,6 @@
             const email = document.getElementById('email-input').value.trim().toLowerCase();
             const password = document.getElementById('password-input').value;
 
-            // Retrieve registered users database from localStorage
             let users = JSON.parse(localStorage.getItem('teleRouteUsers')) || {};
 
             if (currentMode === 'signup') {
@@ -346,7 +369,6 @@
 
                 const nameToSave = fullName !== "" ? fullName : email.split('@')[0];
                 
-                // Save/Register User
                 users[email] = {
                     name: nameToSave,
                     password: password
@@ -355,23 +377,19 @@
                 localStorage.setItem('teleRouteUsers', JSON.stringify(users));
                 localStorage.setItem('teleRouteUser', nameToSave);
 
-                // Successfully signed up -> redirect
                 window.location.href = 'dashboard.html';
 
             } else if (currentMode === 'login') {
-                // Check if user exists
                 if (!users[email]) {
                     showError("No account found with this email. Please Sign Up first!");
                     return;
                 }
 
-                // Verify Password
                 if (users[email].password !== password) {
                     showError("Incorrect password. Please try again!");
                     return;
                 }
 
-                // Password matches! Log in -> redirect
                 localStorage.setItem('teleRouteUser', users[email].name);
                 window.location.href = 'dashboard.html';
             }
