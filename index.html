@@ -36,7 +36,7 @@
             pointer-events: none;
         }
 
-        /* Toast Notification Styling */
+        /* Toast Notification */
         .toast-container {
             position: fixed;
             top: 20px;
@@ -145,7 +145,6 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
 
-        /* Animated Form Container */
         .auth-form {
             display: flex;
             flex-direction: column;
@@ -184,7 +183,6 @@
             box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
         }
 
-        /* Password Toggle Icon */
         .password-toggle {
             position: absolute;
             right: 16px;
@@ -276,7 +274,6 @@
 </head>
 <body>
 
-    <!-- Floating Toast Notification -->
     <div class="toast-container" id="toast">
         <span id="toast-message">Notification message</span>
     </div>
@@ -318,7 +315,6 @@
                 <input type="tel" placeholder="Phone number (11 digits)" maxlength="11">
             </div>
 
-            <!-- Password Field with Interactive Eye Toggle -->
             <div class="input-group">
                 <input type="password" id="password-input" placeholder="Password" required style="padding-right: 48px;">
                 <button type="button" class="password-toggle" onclick="togglePasswordVisibility()" title="Toggle password view">
@@ -352,7 +348,6 @@
         let currentMode = 'login';
         let toastTimeout;
 
-        // Toast Notification Function
         function showToast(message) {
             const toast = document.getElementById('toast');
             const toastMessage = document.getElementById('toast-message');
@@ -366,7 +361,6 @@
             }, 3000);
         }
 
-        // Toggle Password Visibility (Eye Icon)
         function togglePasswordVisibility() {
             const pwdInput = document.getElementById('password-input');
             const eyeIcon = document.getElementById('eye-icon');
@@ -386,7 +380,6 @@
             }
         }
 
-        // Animated Tab Switching
         function switchTab(mode) {
             if (currentMode === mode) return;
             currentMode = mode;
@@ -431,7 +424,6 @@
             }, 200);
         }
 
-        // Authentication & Validation Handler
         function handleAuth(e) {
             e.preventDefault();
 
@@ -456,6 +448,7 @@
 
                 localStorage.setItem('teleRouteUsers', JSON.stringify(users));
                 localStorage.setItem('teleRouteUser', nameToSave);
+                localStorage.setItem('teleRouteEmail', email);
 
                 showToast("Account created successfully!");
                 setTimeout(() => {
@@ -474,6 +467,8 @@
                 }
 
                 localStorage.setItem('teleRouteUser', users[email].name);
+                localStorage.setItem('teleRouteEmail', email);
+                
                 showToast("Signed in successfully!");
                 setTimeout(() => {
                     window.location.href = 'dashboard.html';
@@ -482,4 +477,5 @@
         }
     </script>
 </body>
-</html>
+    </html>
+
