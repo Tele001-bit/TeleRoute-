@@ -48,6 +48,7 @@
             margin-top: 2px;
         }
 
+        /* Profile Button - FIXED: Pointer cursor and button type */
         .profile-btn {
             width: 42px;
             height: 42px;
@@ -99,11 +100,6 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        .eye-icon:hover {
-            background: rgba(255, 255, 255, 0.12);
         }
 
         .balance-amount {
@@ -163,7 +159,6 @@
             flex-direction: column;
             align-items: center;
             gap: 8px;
-            text-decoration: none;
             color: #ffffff;
             cursor: pointer;
         }
@@ -177,11 +172,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: transform 0.15s;
-        }
-
-        .action-box:active {
-            transform: scale(0.95);
         }
 
         .action-icon-circle {
@@ -200,7 +190,7 @@
             font-weight: 500;
         }
 
-        /* Section Title & Card */
+        /* Recent Activity */
         .section-header {
             display: flex;
             justify-content: space-between;
@@ -239,7 +229,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 4px;
         }
 
         .activity-title {
@@ -252,7 +241,7 @@
             color: #6b7280;
         }
 
-        /* Bottom Navigation Bar */
+        /* Bottom Nav */
         .bottom-nav {
             position: fixed;
             bottom: 16px;
@@ -267,7 +256,6 @@
             display: flex;
             justify-content: space-around;
             align-items: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
             z-index: 10;
         }
 
@@ -286,98 +274,23 @@
             color: #ffffff;
         }
 
-        /* Dashboard Modal Window */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.75);
-            backdrop-filter: blur(4px);
-            z-index: 200;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-        }
-
-        .modal-overlay.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .modal-card {
-            width: 100%;
-            max-width: 480px;
-            background: #11141e;
-            border-top: 1px solid #262933;
-            border-radius: 28px 28px 0 0;
-            padding: 24px 20px 36px 20px;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .modal-overlay.active .modal-card {
-            transform: translateY(0);
-        }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .modal-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-        }
-
-        .close-modal-btn {
-            background: #1a1d28;
-            border: none;
-            color: #8a8f98;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            font-size: 1.2rem;
-            cursor: pointer;
-        }
-
-        .modal-body {
-            font-size: 0.9rem;
-            color: #9ca3af;
-            line-height: 1.5;
-        }
-
-        /* ================= FULL SCREEN PROFILE MENU OVERLAY ================= */
-        .profile-overlay {
+        /* ================= PROFILE MENU SCREEN ================= */
+        .profile-screen {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             background: #000000;
-            z-index: 500;
-            display: flex;
+            z-index: 999;
+            display: none; /* Controlled by JS */
             flex-direction: column;
             padding: 16px 20px 40px 20px;
             overflow-y: auto;
-            opacity: 0;
-            pointer-events: none;
-            transform: translateY(15px);
-            transition: opacity 0.25s ease, transform 0.25s ease;
         }
 
-        .profile-overlay.open {
-            opacity: 1;
-            pointer-events: auto;
-            transform: translateY(0);
+        .profile-screen.active {
+            display: flex;
         }
 
         .profile-close-btn {
@@ -393,7 +306,7 @@
             margin-bottom: 12px;
         }
 
-        .profile-card-group {
+        .profile-container {
             display: flex;
             flex-direction: column;
             gap: 12px;
@@ -402,7 +315,7 @@
             margin: 0 auto;
         }
 
-        /* Top Profile User Card */
+        /* User Header Card */
         .user-profile-card {
             background: #12141a;
             border-radius: 20px;
@@ -446,7 +359,7 @@
             color: #6b7280;
         }
 
-        /* Menu Groups */
+        /* Options Group Card */
         .menu-section {
             background: #12141a;
             border-radius: 20px;
@@ -462,22 +375,16 @@
             justify-content: space-between;
             padding: 16px 20px;
             color: #ffffff;
-            text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 500;
             background: transparent;
             border: none;
             width: 100%;
             cursor: pointer;
-            transition: background 0.15s;
+            font-size: 0.95rem;
+            font-weight: 500;
         }
 
         .menu-item:not(:last-child) {
             border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-        }
-
-        .menu-item:hover {
-            background: rgba(255, 255, 255, 0.03);
         }
 
         .menu-item-left {
@@ -521,10 +428,11 @@
     <div class="header">
         <div>
             <div class="welcome-sub">WELCOME BACK</div>
-            <div class="user-name" id="display-user-name">MORSE</div>
+            <div class="user-name">MORSE</div>
         </div>
-        <!-- Clickable Profile Icon (Tapping this opens the second screen) -->
-        <div class="profile-btn" onclick="openProfileOverlay()" title="Profile & Settings">
+        
+        <!-- Tapping this opens the settings screen directly -->
+        <div class="profile-btn" id="open-profile-btn">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                 <circle cx="12" cy="7" r="4"></circle>
@@ -535,30 +443,25 @@
     <!-- Balance Card -->
     <div class="balance-card">
         <div class="balance-label">TOTAL BALANCE</div>
-        
-        <div class="eye-icon" onclick="toggleBalanceVisibility()" title="Toggle balance privacy">
-            <svg id="balance-eye-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8a8f98" stroke-width="2">
+        <div class="eye-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8a8f98" stroke-width="2">
                 <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                 <circle cx="12" cy="12" r="3"></circle>
             </svg>
         </div>
-
-        <div class="balance-amount" id="balance-amount-text">&bull;&bull;&bull;&bull;&bull;&bull;</div>
-        
+        <div class="balance-amount">&bull;&bull;&bull;&bull;&bull;&bull;</div>
         <div class="balance-actions">
-            <button class="btn-primary" onclick="openModal('Add Money', 'Select a payment method to fund your TeleRoute wallet.')">+ Add Money</button>
-            <button class="btn-secondary" onclick="openModal('Transaction History', 'You currently have no past transactions recorded.')">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <rect x="2" y="5" width="20" height="14" rx="2"></rect>
-                    <line x1="2" y1="10" x2="22" y2="10"></line>
-                </svg> History
+            <button class="btn-primary">+ Add Money</button>
+            <button class="btn-secondary">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg> 
+                History
             </button>
         </div>
     </div>
 
     <!-- 4 Quick Actions Grid -->
     <div class="actions-grid">
-        <div class="action-item" onclick="openModal('Buy Number', 'Choose country & service to receive activation SMS.')">
+        <div class="action-item">
             <div class="action-box">
                 <div class="action-icon-circle">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
@@ -567,7 +470,7 @@
             <span class="action-label">Buy Number</span>
         </div>
 
-        <div class="action-item" onclick="openModal('Rent Number', 'Rent virtual numbers for long-term usage.')">
+        <div class="action-item">
             <div class="action-box">
                 <div class="action-icon-circle">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
@@ -576,7 +479,7 @@
             <span class="action-label">Rent Number</span>
         </div>
 
-        <div class="action-item" onclick="openModal('Inbox', 'View incoming messages and OTP codes.')">
+        <div class="action-item">
             <div class="action-box">
                 <div class="action-icon-circle">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
@@ -585,7 +488,7 @@
             <span class="action-label">Inbox</span>
         </div>
 
-        <div class="action-item" onclick="openModal('Customer Support', 'Contact 24/7 support for assistance.')">
+        <div class="action-item">
             <div class="action-box">
                 <div class="action-icon-circle">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg>
@@ -595,10 +498,10 @@
         </div>
     </div>
 
-    <!-- Recent Activity Section -->
+    <!-- Recent Activity -->
     <div class="section-header">
         <div class="section-title">Recent activity</div>
-        <a href="#" class="view-all" onclick="openModal('All Activity', 'No activity history found.')">View all &rarr;</a>
+        <a href="#" class="view-all">View all &rarr;</a>
     </div>
 
     <div class="activity-card">
@@ -614,17 +517,78 @@
         <div class="activity-desc">Your activity will appear here</div>
     </div>
 
-    <!-- Bottom Navigation Bar -->
+    <!-- Bottom Nav -->
     <div class="bottom-nav">
         <a href="#" class="nav-item active">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
             <span>Home</span>
         </a>
-        <a href="#" class="nav-item" onclick="openModal('Services', 'Explore catalog of available virtual services.')">
+        <a href="#" class="nav-item">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
             <span>Services</span>
         </a>
-        <a href="#" class="nav-item" onclick="openModal('Activations', 'View active numbers and order status.')">
+        <a href="#" class="nav-item">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
             <span>Activations</span>
-        
+        </a>
+    </div>
+
+    <!-- ================= PROFILE OVERLAY SCREEN ================= -->
+    <div class="profile-screen" id="profile-screen">
+        <button class="profile-close-btn" id="close-profile-btn">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+
+        <div class="profile-container">
+            <!-- User Header Card -->
+            <div class="user-profile-card">
+                <div class="avatar-circle">M</div>
+                <div class="profile-info">
+                    <div class="name">MORDECAI</div>
+                    <div class="email">dw347320@gmail.com</div>
+                </div>
+            </div>
+
+            <!-- Free Credit -->
+            <div class="menu-section">
+                <button class="menu-item">
+                    <div class="menu-item-left">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                        <span>Free Credit</span>
+                    </div>
+                    <div class="menu-item-right">&rsaquo;</div>
+                </button>
+            </div>
+
+            <!-- Language & Policies -->
+            <div class="menu-section">
+                <button class="menu-item">
+                    <div class="menu-item-left">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                        <span>Language</span>
+                    </div>
+                    <div class="menu-item-right">English &rsaquo;</div>
+                </button>
+
+                <button class="menu-item">
+                    <div class="menu-item-left">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                        <span>Terms of Use</span>
+                    </div>
+                    <div class="menu-item-right">&rsaquo;</div>
+                </button>
+
+                <button class="menu-item">
+                    <div class="menu-item-left">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                        <span>Privacy Policy</span>
+                    </div>
+                    <div class="menu-item-right">&rsaquo;</div>
+                </button>
+            </div>
+
+            <!-- Support & Info -->
+            <div class="menu-section">
+                <button class="menu-item">
+                    <div class="menu-item-left">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path 
