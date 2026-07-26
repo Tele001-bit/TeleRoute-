@@ -13,6 +13,7 @@
             -webkit-tap-highlight-color: transparent;
         }
 
+        /* Set pure black background matching the login page */
         body {
             background-color: #000000;
             color: #ffffff;
@@ -53,7 +54,7 @@
             width: 46px;
             height: 46px;
             border-radius: 50%;
-            background: #111113;
+            background: #0d0d0d;
             border: 1px solid #1c1d22;
             display: flex;
             align-items: center;
@@ -66,16 +67,16 @@
             transform: scale(0.95);
         }
 
-        /* Grid Background Balance Card */
+        /* Balance Card with Pitch Black Background */
         .balance-card {
-            background-color: #08080a;
-            border: 1px solid #18191e;
+            background-color: #000000;
+            border: 1px solid #1c1d22;
             border-radius: 24px;
             padding: 24px 20px;
             position: relative;
             background-image: 
-                linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+                linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
             background-size: 26px 26px;
             margin-bottom: 20px;
             overflow: hidden;
@@ -95,7 +96,7 @@
             right: 20px;
             width: 36px;
             height: 36px;
-            background: rgba(255, 255, 255, 0.04);
+            background: rgba(255, 255, 255, 0.05);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -147,7 +148,7 @@
 
         .btn-secondary {
             flex: 1;
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(255, 255, 255, 0.05);
             color: #ffffff;
             border: 1px solid #1f2128;
             padding: 15px;
@@ -181,8 +182,8 @@
         .action-box {
             width: 100%;
             aspect-ratio: 1;
-            background: #090a0c;
-            border: 1px solid #1a1c23;
+            background: #000000;
+            border: 1px solid #1c1d22;
             border-radius: 20px;
             display: flex;
             align-items: center;
@@ -198,7 +199,7 @@
         .action-icon-circle {
             width: 40px;
             height: 40px;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.06);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -232,8 +233,8 @@
         }
 
         .activity-card {
-            background: #090a0c;
-            border: 1px solid #1a1c23;
+            background: #000000;
+            border: 1px solid #1c1d22;
             border-radius: 24px;
             padding: 45px 20px;
             text-align: center;
@@ -246,7 +247,7 @@
         .receipt-icon-box {
             width: 52px;
             height: 52px;
-            background: rgba(255, 255, 255, 0.04);
+            background: rgba(255, 255, 255, 0.05);
             border-radius: 16px;
             display: flex;
             align-items: center;
@@ -271,8 +272,8 @@
             transform: translateX(-50%);
             width: calc(100% - 32px);
             max-width: 448px;
-            background: #090a0c;
-            border: 1px solid #1a1c23;
+            background: #000000;
+            border: 1px solid #1c1d22;
             border-radius: 35px;
             padding: 10px 24px;
             display: flex;
@@ -321,14 +322,14 @@
             transform: translateX(-50%) translateY(0);
         }
 
-        /* Interactive Sheet Overlays */
+        /* Sheets & Profile Overlay */
         .sheet-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.8);
+            background: rgba(0,0,0,0.85);
             backdrop-filter: blur(4px);
             z-index: 800;
             display: none;
@@ -343,7 +344,7 @@
         .sheet-card {
             width: 100%;
             max-width: 480px;
-            background: #0c0d12;
+            background: #0a0a0c;
             border-top: 1px solid #1f2128;
             border-radius: 28px 28px 0 0;
             padding: 24px 20px 36px 20px;
@@ -443,7 +444,7 @@
             color: #ffffff;
         }
 
-        /* Full Screen Profile Drawer */
+        /* Profile Screen Overlay */
         .profile-screen {
             position: fixed;
             top: 0;
@@ -485,13 +486,13 @@
         }
 
         .user-profile-card {
-            background: #090a0c;
+            background: #0a0a0c;
             border-radius: 20px;
             padding: 20px;
             display: flex;
             align-items: center;
             gap: 16px;
-            border: 1px solid #1a1c23;
+            border: 1px solid #1c1d22;
         }
 
         .avatar-circle {
@@ -527,12 +528,12 @@
         }
 
         .menu-section {
-            background: #090a0c;
+            background: #0a0a0c;
             border-radius: 20px;
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            border: 1px solid #1a1c23;
+            border: 1px solid #1c1d22;
         }
 
         .menu-item {
@@ -587,14 +588,14 @@
 </head>
 <body>
 
-    <!-- Toast Notification -->
-    <div id="toast" class="toast">Account ID copied!</div>
+    <!-- Toast Popup Notification -->
+    <div id="toast" class="toast">Notice</div>
 
     <!-- Header Section -->
     <div class="header">
         <div>
             <div class="welcome-sub">WELCOME BACK</div>
-            <div class="user-name" id="display-header-name">MORDECAI</div>
+            <div class="user-name" id="display-header-name">USER</div>
         </div>
         
         <div class="profile-btn" id="open-profile-btn">
@@ -633,7 +634,7 @@
         </div>
     </div>
 
-    <!-- 4 Action Grid -->
+    <!-- Action Cards Grid -->
     <div class="actions-grid">
         <div class="action-item" id="btn-buy-number">
             <div class="action-box">
@@ -681,4 +682,4 @@
     <div class="activity-card">
         <div class="receipt-icon-box">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#62666d" stroke-width="2">
-                <path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1
+                <path 
