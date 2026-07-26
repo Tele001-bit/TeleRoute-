@@ -13,7 +13,6 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* Set pure black background matching the login page */
         body {
             background-color: #000000;
             color: #ffffff;
@@ -67,7 +66,22 @@
             transform: scale(0.95);
         }
 
-        /* Balance Card with Pitch Black Background */
+        /* TAB VIEWS MANAGEMENT */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.2s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Balance Card */
         .balance-card {
             background-color: #000000;
             border: 1px solid #1c1d22;
@@ -142,10 +156,6 @@
             cursor: pointer;
         }
 
-        .btn-primary:active {
-            opacity: 0.88;
-        }
-
         .btn-secondary {
             flex: 1;
             background: rgba(255, 255, 255, 0.05);
@@ -162,7 +172,7 @@
             cursor: pointer;
         }
 
-        /* 4 Action Cards Grid */
+        /* 4 Action Grid */
         .actions-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -212,7 +222,7 @@
             font-weight: 500;
         }
 
-        /* Recent Activity Title */
+        /* Sections & Activity Card */
         .section-header {
             display: flex;
             justify-content: space-between;
@@ -264,7 +274,120 @@
             color: #52565e;
         }
 
-        /* Bottom Floating Nav Bar */
+        /* SERVICES LIST TAB */
+        .search-bar {
+            width: 100%;
+            background: #090a0d;
+            border: 1px solid #1c1d22;
+            border-radius: 16px;
+            padding: 14px 16px;
+            color: #fff;
+            font-size: 0.9rem;
+            margin-bottom: 18px;
+            outline: none;
+        }
+
+        .service-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .service-row {
+            background: #000000;
+            border: 1px solid #1c1d22;
+            border-radius: 18px;
+            padding: 14px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+
+        .service-row:active {
+            border-color: #ffffff;
+        }
+
+        .service-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .service-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: #111218;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .service-name {
+            font-size: 0.95rem;
+            font-weight: 700;
+        }
+
+        .service-price {
+            font-size: 0.85rem;
+            color: #8b8f97;
+            font-weight: 600;
+        }
+
+        /* ACTIVATIONS TAB */
+        .activation-item {
+            background: #000000;
+            border: 1px solid #1c1d22;
+            border-radius: 20px;
+            padding: 18px;
+            margin-bottom: 12px;
+        }
+
+        .activation-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .activation-service {
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        .activation-timer {
+            font-size: 0.78rem;
+            color: #f87171;
+            font-weight: 600;
+            background: rgba(248, 113, 113, 0.1);
+            padding: 4px 8px;
+            border-radius: 8px;
+        }
+
+        .activation-number {
+            font-size: 1.2rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .sms-box {
+            background: #0a0b0e;
+            border: 1px dashed #2a2d38;
+            border-radius: 12px;
+            padding: 12px;
+            font-size: 0.85rem;
+            color: #8b8f97;
+            text-align: center;
+        }
+
+        /* BOTTOM FLOATING NAV BAR */
         .bottom-nav {
             position: fixed;
             bottom: 16px;
@@ -291,13 +414,25 @@
             color: #52565e;
             font-size: 0.72rem;
             font-weight: 600;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .nav-item svg {
+            stroke: #52565e;
+            transition: stroke 0.2s;
         }
 
         .nav-item.active {
             color: #ffffff;
         }
 
-        /* Toast Notification Popup */
+        .nav-item.active svg {
+            stroke: #ffffff;
+        }
+
+        /* Toast Popup */
         .toast {
             position: fixed;
             top: 20px;
@@ -322,7 +457,7 @@
             transform: translateX(-50%) translateY(0);
         }
 
-        /* Sheets & Profile Overlay */
+        /* Modals & Profile Screen Overlay */
         .sheet-overlay {
             position: fixed;
             top: 0;
@@ -444,7 +579,6 @@
             color: #ffffff;
         }
 
-        /* Profile Screen Overlay */
         .profile-screen {
             position: fixed;
             top: 0;
@@ -606,80 +740,24 @@
         </div>
     </div>
 
-    <!-- Total Balance Card -->
-    <div class="balance-card">
-        <div class="balance-label">TOTAL BALANCE</div>
-        
-        <div class="eye-icon" id="toggle-eye-btn">
-            <svg id="eye-icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8a8f98" stroke-width="2">
-                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                <circle cx="12" cy="12" r="3"></circle>
-            </svg>
-        </div>
-
-        <div class="balance-amount" id="balance-container">
-            <span class="balance-symbol">₦</span>
-            <span id="balance-text">0.00</span>
-        </div>
-
-        <div class="balance-actions">
-            <button class="btn-primary" id="open-topup-btn">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                Add Money
-            </button>
-            <button class="btn-secondary" onclick="showToast('History is empty.')">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
-                History
-            </button>
-        </div>
-    </div>
-
-    <!-- Action Cards Grid -->
-    <div class="actions-grid">
-        <div class="action-item" id="btn-buy-number">
-            <div class="action-box">
-                <div class="action-icon-circle">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
-                </div>
+    <!-- TAB 1: HOME -->
+    <div id="tab-home" class="tab-content active">
+        <!-- Balance Card -->
+        <div class="balance-card">
+            <div class="balance-label">TOTAL BALANCE</div>
+            
+            <div class="eye-icon" id="toggle-eye-btn">
+                <svg id="eye-icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8a8f98" stroke-width="2">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                </svg>
             </div>
-            <span class="action-label">Buy Number</span>
-        </div>
 
-        <div class="action-item" onclick="showToast('Rent number feature coming soon!')">
-            <div class="action-box">
-                <div class="action-icon-circle">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                </div>
+            <div class="balance-amount" id="balance-container">
+                <span class="balance-symbol">₦</span>
+                <span id="balance-text">0.00</span>
             </div>
-            <span class="action-label">Rent Number</span>
-        </div>
 
-        <div class="action-item" onclick="showToast('Inbox is currently empty.')">
-            <div class="action-box">
-                <div class="action-icon-circle">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                </div>
-            </div>
-            <span class="action-label">Inbox</span>
-        </div>
-
-        <div class="action-item" onclick="showToast('Contact support: support@teleroute.com')">
-            <div class="action-box">
-                <div class="action-icon-circle">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg>
-                </div>
-            </div>
-            <span class="action-label">Support</span>
-        </div>
-    </div>
-
-    <!-- Recent Activity Section -->
-    <div class="section-header">
-        <div class="section-title">Recent activity</div>
-        <a href="#" class="view-all" onclick="showToast('No history available')">View all &rarr;</a>
-    </div>
-
-    <div class="activity-card">
-        <div class="receipt-icon-box">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#62666d" stroke-width="2">
-                <path 
+            <div class="balance-actions">
+                <button class="btn-primary" id="open-topup-btn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"><
