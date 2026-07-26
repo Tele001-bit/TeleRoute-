@@ -17,7 +17,7 @@
             background-color: #000000;
             color: #ffffff;
             min-height: 100vh;
-            padding: 24px 20px 95px 20px;
+            padding: 24px 20px 100px 20px;
             max-width: 480px;
             margin: 0 auto;
             position: relative;
@@ -66,13 +66,13 @@
             transform: scale(0.95);
         }
 
-        /* TAB VIEWS MANAGEMENT */
+        /* Tab Content Control */
         .tab-content {
             display: none;
         }
 
         .tab-content.active {
-            display: block;
+            display: block !important;
             animation: fadeIn 0.2s ease-in-out;
         }
 
@@ -138,6 +138,7 @@
         .balance-actions {
             display: flex;
             gap: 12px;
+            width: 100%;
         }
 
         .btn-primary {
@@ -154,6 +155,7 @@
             justify-content: center;
             gap: 8px;
             cursor: pointer;
+            white-space: nowrap;
         }
 
         .btn-secondary {
@@ -170,9 +172,10 @@
             justify-content: center;
             gap: 8px;
             cursor: pointer;
+            white-space: nowrap;
         }
 
-        /* 4 Action Grid */
+        /* Quick Actions Grid */
         .actions-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -222,7 +225,7 @@
             font-weight: 500;
         }
 
-        /* Sections & Activity Card */
+        /* Recent Activity Section */
         .section-header {
             display: flex;
             justify-content: space-between;
@@ -274,7 +277,7 @@
             color: #52565e;
         }
 
-        /* SERVICES LIST TAB */
+        /* Services Tab */
         .search-bar {
             width: 100%;
             background: #090a0d;
@@ -302,10 +305,6 @@
             align-items: center;
             justify-content: space-between;
             cursor: pointer;
-        }
-
-        .service-row:active {
-            border-color: #ffffff;
         }
 
         .service-left {
@@ -337,7 +336,7 @@
             font-weight: 600;
         }
 
-        /* ACTIVATIONS TAB */
+        /* Activations Tab */
         .activation-item {
             background: #000000;
             border: 1px solid #1c1d22;
@@ -372,9 +371,6 @@
             font-weight: 800;
             letter-spacing: 1px;
             margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
         }
 
         .sms-box {
@@ -387,7 +383,7 @@
             text-align: center;
         }
 
-        /* BOTTOM FLOATING NAV BAR */
+        /* Bottom Floating Bar */
         .bottom-nav {
             position: fixed;
             bottom: 16px;
@@ -402,7 +398,7 @@
             display: flex;
             justify-content: space-around;
             align-items: center;
-            z-index: 10;
+            z-index: 100;
         }
 
         .nav-item {
@@ -457,7 +453,7 @@
             transform: translateX(-50%) translateY(0);
         }
 
-        /* Modals & Profile Screen Overlay */
+        /* Modals & Profile Screen */
         .sheet-overlay {
             position: fixed;
             top: 0;
@@ -722,10 +718,10 @@
 </head>
 <body>
 
-    <!-- Toast Popup Notification -->
+    <!-- Toast Notification Popup -->
     <div id="toast" class="toast">Notice</div>
 
-    <!-- Header Section -->
+    <!-- Header -->
     <div class="header">
         <div>
             <div class="welcome-sub">WELCOME BACK</div>
@@ -742,7 +738,7 @@
 
     <!-- TAB 1: HOME -->
     <div id="tab-home" class="tab-content active">
-        <!-- Balance Card -->
+        <!-- Total Balance Card -->
         <div class="balance-card">
             <div class="balance-label">TOTAL BALANCE</div>
             
@@ -760,4 +756,6 @@
 
             <div class="balance-actions">
                 <button class="btn-primary" id="open-topup-btn">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"><
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    <span>Add Money</span>
+              
