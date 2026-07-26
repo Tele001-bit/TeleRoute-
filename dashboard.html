@@ -14,10 +14,10 @@
         }
 
         body {
-            background-color: #05070a;
+            background-color: #000000;
             color: #ffffff;
             min-height: 100vh;
-            padding: 20px 16px 90px 16px;
+            padding: 24px 20px 95px 20px;
             max-width: 480px;
             margin: 0 auto;
             position: relative;
@@ -29,72 +29,73 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 24px;
-            padding-top: 10px;
+            padding-top: 8px;
         }
 
         .welcome-sub {
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #8a8f98;
+            letter-spacing: 1.2px;
+            color: #62666d;
             font-weight: 600;
         }
 
         .user-name {
-            font-size: 1.4rem;
+            font-size: 1.45rem;
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 0.5px;
             color: #ffffff;
-            margin-top: 2px;
+            margin-top: 4px;
         }
 
         .profile-btn {
-            width: 42px;
-            height: 42px;
+            width: 46px;
+            height: 46px;
             border-radius: 50%;
-            background: #14171f;
-            border: 1px solid #262933;
+            background: #111113;
+            border: 1px solid #1c1d22;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: background 0.2s, transform 0.1s;
+            transition: transform 0.1s;
         }
 
         .profile-btn:active {
             transform: scale(0.95);
         }
 
-        /* Balance Card */
+        /* Grid Background Balance Card */
         .balance-card {
-            background: #0f1118;
-            border: 1px solid #1e2230;
-            border-radius: 20px;
-            padding: 22px 20px;
+            background-color: #08080a;
+            border: 1px solid #18191e;
+            border-radius: 24px;
+            padding: 24px 20px;
             position: relative;
             background-image: 
-                linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
-            background-size: 20px 20px;
+                linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+            background-size: 26px 26px;
             margin-bottom: 20px;
+            overflow: hidden;
         }
 
         .balance-label {
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #8a8f98;
-            font-weight: 600;
+            letter-spacing: 1.5px;
+            color: #62666d;
+            font-weight: 700;
         }
 
         .eye-icon {
             position: absolute;
             top: 20px;
             right: 20px;
-            width: 32px;
-            height: 32px;
-            background: rgba(255, 255, 255, 0.05);
+            width: 36px;
+            height: 36px;
+            background: rgba(255, 255, 255, 0.04);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -103,10 +104,20 @@
         }
 
         .balance-amount {
-            font-size: 2rem;
+            font-size: 2.5rem;
             font-weight: 800;
-            margin: 12px 0 20px 0;
-            letter-spacing: 1px;
+            margin: 12px 0 24px 0;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: baseline;
+            gap: 2px;
+        }
+
+        .balance-symbol {
+            color: #72767d;
+            font-weight: 700;
+            font-size: 1.8rem;
+            margin-right: 2px;
         }
 
         .balance-actions {
@@ -117,45 +128,44 @@
         .btn-primary {
             flex: 1;
             background: #ffffff;
-            color: #05070a;
+            color: #000000;
             border: none;
-            padding: 14px;
-            border-radius: 25px;
-            font-size: 0.95rem;
+            padding: 15px;
+            border-radius: 30px;
+            font-size: 0.92rem;
             font-weight: 700;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 6px;
+            gap: 8px;
             cursor: pointer;
-            transition: opacity 0.2s;
         }
 
         .btn-primary:active {
-            opacity: 0.85;
+            opacity: 0.88;
         }
 
         .btn-secondary {
             flex: 1;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.03);
             color: #ffffff;
-            border: 1px solid #262933;
-            padding: 14px;
-            border-radius: 25px;
-            font-size: 0.95rem;
+            border: 1px solid #1f2128;
+            padding: 15px;
+            border-radius: 30px;
+            font-size: 0.92rem;
             font-weight: 600;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 6px;
+            gap: 8px;
             cursor: pointer;
         }
 
-        /* 4 Quick Actions Grid */
+        /* 4 Action Cards Grid */
         .actions-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 12px;
+            gap: 10px;
             margin-bottom: 28px;
         }
 
@@ -171,9 +181,9 @@
         .action-box {
             width: 100%;
             aspect-ratio: 1;
-            background: #0f1118;
-            border: 1px solid #1e2230;
-            border-radius: 18px;
+            background: #090a0c;
+            border: 1px solid #1a1c23;
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -181,13 +191,13 @@
         }
 
         .action-item:active .action-box {
-            transform: scale(0.94);
+            transform: scale(0.93);
             border-color: #3b82f6;
         }
 
         .action-icon-circle {
-            width: 38px;
-            height: 38px;
+            width: 40px;
+            height: 40px;
             background: rgba(255, 255, 255, 0.05);
             border-radius: 50%;
             display: flex;
@@ -196,12 +206,12 @@
         }
 
         .action-label {
-            font-size: 0.78rem;
-            color: #d1d5db;
+            font-size: 0.74rem;
+            color: #8b8f97;
             font-weight: 500;
         }
 
-        /* Section Title & Card */
+        /* Recent Activity Title */
         .section-header {
             display: flex;
             justify-content: space-between;
@@ -210,33 +220,34 @@
         }
 
         .section-title {
-            font-size: 1.1rem;
-            font-weight: 700;
+            font-size: 1.15rem;
+            font-weight: 800;
         }
 
         .view-all {
-            color: #8a8f98;
-            font-size: 0.85rem;
+            color: #62666d;
+            font-size: 0.82rem;
             text-decoration: none;
+            font-weight: 600;
         }
 
         .activity-card {
-            background: #0f1118;
-            border: 1px solid #1e2230;
-            border-radius: 20px;
-            padding: 36px 20px;
+            background: #090a0c;
+            border: 1px solid #1a1c23;
+            border-radius: 24px;
+            padding: 45px 20px;
             text-align: center;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
 
         .receipt-icon-box {
-            width: 50px;
-            height: 50px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 14px;
+            width: 52px;
+            height: 52px;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -244,15 +255,15 @@
 
         .activity-title {
             font-size: 0.95rem;
-            font-weight: 600;
+            font-weight: 700;
         }
 
         .activity-desc {
-            font-size: 0.82rem;
-            color: #6b7280;
+            font-size: 0.8rem;
+            color: #52565e;
         }
 
-        /* Bottom Nav */
+        /* Bottom Floating Nav Bar */
         .bottom-nav {
             position: fixed;
             bottom: 16px;
@@ -260,10 +271,10 @@
             transform: translateX(-50%);
             width: calc(100% - 32px);
             max-width: 448px;
-            background: #0f1118;
-            border: 1px solid #1e2230;
-            border-radius: 30px;
-            padding: 10px 20px;
+            background: #090a0c;
+            border: 1px solid #1a1c23;
+            border-radius: 35px;
+            padding: 10px 24px;
             display: flex;
             justify-content: space-around;
             align-items: center;
@@ -276,7 +287,7 @@
             align-items: center;
             gap: 4px;
             text-decoration: none;
-            color: #6b7280;
+            color: #52565e;
             font-size: 0.72rem;
             font-weight: 600;
         }
@@ -285,14 +296,39 @@
             color: #ffffff;
         }
 
-        /* Interactive Bottom Sheets / Modals */
+        /* Toast Notification Popup */
+        .toast {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50px);
+            background: #11131a;
+            color: #ffffff;
+            border: 1px solid #2a2e3d;
+            padding: 10px 18px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            z-index: 10000;
+            opacity: 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.8);
+            pointer-events: none;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* Interactive Sheet Overlays */
         .sheet-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.7);
+            background: rgba(0,0,0,0.8);
             backdrop-filter: blur(4px);
             z-index: 800;
             display: none;
@@ -307,14 +343,14 @@
         .sheet-card {
             width: 100%;
             max-width: 480px;
-            background: #11141e;
-            border-top: 1px solid #262933;
+            background: #0c0d12;
+            border-top: 1px solid #1f2128;
             border-radius: 28px 28px 0 0;
             padding: 24px 20px 36px 20px;
             display: flex;
             flex-direction: column;
             gap: 18px;
-            animation: slideUp 0.25s ease-out;
+            animation: slideUp 0.22s ease-out;
         }
 
         @keyframes slideUp {
@@ -334,7 +370,7 @@
         }
 
         .sheet-close {
-            background: #1a1d28;
+            background: #181920;
             border: none;
             color: #8a8f98;
             width: 32px;
@@ -344,7 +380,6 @@
             cursor: pointer;
         }
 
-        /* Form Inputs inside Modals */
         .form-group {
             display: flex;
             flex-direction: column;
@@ -352,18 +387,18 @@
         }
 
         .form-label {
-            font-size: 0.8rem;
-            color: #8a8f98;
+            font-size: 0.78rem;
+            color: #62666d;
             text-transform: uppercase;
-            font-weight: 600;
+            font-weight: 700;
         }
 
         .form-select, .form-input {
             width: 100%;
-            background: #181b26;
-            border: 1px solid #262933;
+            background: #12131a;
+            border: 1px solid #222430;
             color: #ffffff;
-            padding: 12px 14px;
+            padding: 13px 14px;
             border-radius: 12px;
             font-size: 0.95rem;
             outline: none;
@@ -376,25 +411,24 @@
         }
 
         .preset-chip {
-            background: #181b26;
-            border: 1px solid #262933;
+            background: #12131a;
+            border: 1px solid #222430;
             padding: 10px;
             border-radius: 12px;
             text-align: center;
             font-weight: 600;
             font-size: 0.88rem;
             cursor: pointer;
-            transition: background 0.2s, border-color 0.2s;
         }
 
         .preset-chip.active {
-            border-color: #3b82f6;
-            background: rgba(59, 130, 246, 0.15);
-            color: #60a5fa;
+            border-color: #ffffff;
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
         }
 
         .price-summary {
-            background: #181b26;
+            background: #12131a;
             border-radius: 14px;
             padding: 14px;
             display: flex;
@@ -404,37 +438,12 @@
         }
 
         .price-tag {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             font-weight: 800;
-            color: #2dd4bf;
-        }
-
-        /* Toast Popup */
-        .toast {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%) translateY(-50px);
-            background: #1e2230;
             color: #ffffff;
-            border: 1px solid #3b82f6;
-            padding: 10px 18px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            z-index: 10000;
-            opacity: 0;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-            pointer-events: none;
         }
 
-        .toast.show {
-            opacity: 1;
-            transform: translateX(-50%) translateY(0);
-        }
-
-        /* Profile Screen Overlay */
+        /* Full Screen Profile Drawer */
         .profile-screen {
             position: fixed;
             top: 0;
@@ -476,20 +485,20 @@
         }
 
         .user-profile-card {
-            background: #12141a;
+            background: #090a0c;
             border-radius: 20px;
             padding: 20px;
             display: flex;
             align-items: center;
             gap: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid #1a1c23;
         }
 
         .avatar-circle {
             width: 58px;
             height: 58px;
             border-radius: 50%;
-            background: #2dd4bf;
+            background: #ffffff;
             color: #000000;
             font-size: 1.8rem;
             font-weight: 800;
@@ -510,21 +519,20 @@
             font-weight: 800;
             color: #ffffff;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
 
         .profile-info .email {
             font-size: 0.88rem;
-            color: #6b7280;
+            color: #62666d;
         }
 
         .menu-section {
-            background: #12141a;
+            background: #090a0c;
             border-radius: 20px;
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid #1a1c23;
         }
 
         .menu-item {
@@ -542,7 +550,7 @@
         }
 
         .menu-item:not(:last-child) {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            border-bottom: 1px solid #15171d;
         }
 
         .menu-item-left {
@@ -551,15 +559,11 @@
             gap: 14px;
         }
 
-        .menu-item-left svg {
-            color: #9ca3af;
-        }
-
         .menu-item-right {
             display: flex;
             align-items: center;
             gap: 6px;
-            color: #6b7280;
+            color: #62666d;
             font-size: 0.88rem;
         }
 
@@ -569,7 +573,7 @@
 
         .profile-id-footer {
             text-align: center;
-            color: #6b7280;
+            color: #62666d;
             font-size: 0.82rem;
             margin-top: 18px;
             margin-bottom: 20px;
@@ -583,48 +587,53 @@
 </head>
 <body>
 
-    <!-- Toast Popup Notification -->
+    <!-- Toast Notification -->
     <div id="toast" class="toast">Account ID copied!</div>
 
     <!-- Header Section -->
     <div class="header">
         <div>
             <div class="welcome-sub">WELCOME BACK</div>
-            <div class="user-name" id="display-header-name">MORSE</div>
+            <div class="user-name" id="display-header-name">MORDECAI</div>
         </div>
         
-        <!-- Profile Settings Trigger Icon -->
         <div class="profile-btn" id="open-profile-btn">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                 <circle cx="12" cy="7" r="4"></circle>
             </svg>
         </div>
     </div>
 
-    <!-- Balance Card (Naira Standard) -->
+    <!-- Total Balance Card -->
     <div class="balance-card">
         <div class="balance-label">TOTAL BALANCE</div>
         
         <div class="eye-icon" id="toggle-eye-btn">
-            <svg id="eye-icon-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8a8f98" stroke-width="2">
+            <svg id="eye-icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8a8f98" stroke-width="2">
                 <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                 <circle cx="12" cy="12" r="3"></circle>
             </svg>
         </div>
 
-        <div class="balance-amount" id="balance-text">&bull;&bull;&bull;&bull;&bull;&bull;</div>
+        <div class="balance-amount" id="balance-container">
+            <span class="balance-symbol">₦</span>
+            <span id="balance-text">0.00</span>
+        </div>
 
         <div class="balance-actions">
-            <button class="btn-primary" id="open-topup-btn">+ Add Money</button>
+            <button class="btn-primary" id="open-topup-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                Add Money
+            </button>
             <button class="btn-secondary" onclick="showToast('History is empty.')">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg> 
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
                 History
             </button>
         </div>
     </div>
 
-    <!-- 4 Quick Actions Grid -->
+    <!-- 4 Action Grid -->
     <div class="actions-grid">
         <div class="action-item" id="btn-buy-number">
             <div class="action-box">
@@ -671,11 +680,5 @@
 
     <div class="activity-card">
         <div class="receipt-icon-box">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8a8f98" stroke-width="2">
-                <path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1-2-1z"></path>
-                <line x1="8" y1="8" x2="16" y2="8"></line>
-                <line x1="8" y1="12" x2="16" y2="12"></line>
-                <line x1="8" y1="16" x2="12" y2="16"></line>
-            </svg>
-        </div>
-        <div class="activity-title">No transactions yet</d
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#62666d" stroke-width="2">
+                <path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1
